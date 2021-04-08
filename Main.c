@@ -144,7 +144,7 @@ int main()
     printf("|                                    |\n");
     printf("|      This project is made by       |\n");
     printf("|          -Priyanshu Sahu           |\n");
-    printf("|             Version 1.0            |\n");
+    printf("|             Version 1.1            |\n");
     printf("|                                    |\n");
     printf("+------------------------------------+\n");
     
