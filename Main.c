@@ -21,7 +21,7 @@ struct student
     char dept[8];
     char branch[10];
     char batch[5];
-    long unsigned int mobn; 
+    char mobn[15]; 
 };
 
 struct student stu;
@@ -40,7 +40,7 @@ void addS_det(){
         printf("Department: ");gets(stu.dept);
         printf("Branch: ");gets(stu.branch);
         printf("Batch: ");gets(stu.batch);
-        printf("Phone Number: ");scanf("%ld",&stu.mobn);
+        printf("Phone Number: ");gets(stu.mobn);
         fwrite(&stu, sizeof(stu), 1, fp);
         
         textcolor(YELLOW);printf("Record added successfully");   
@@ -53,20 +53,20 @@ void modS_det(){
     printf("Modify Record\n");
     char s_id[15];
     int isFound = 0;
-    printf("Enter PRN to Modify: ");fflush(stdin);
+    printf("Enter PRN to Modify: ");/*fflush(stdin);*/
     gets(s_id);
     FILE *fp;
     fp = fopen("record.txt","rb+");
 
     while(fread(&stu, sizeof(stu),1,fp) == 1){
         if(strcmp(s_id, stu.PRN) == 0){
-            fflush(stdin);
+            /*fflush(stdin);*/
             printf("PRN: ");gets(stu.PRN);
             printf("Name: ");gets(stu.name);
             printf("Department: ");gets(stu.dept);
             printf("Branch: ");gets(stu.branch);
             printf("Batch: ");gets(stu.batch);
-            printf("Phone Number: ");scanf("%ld",&stu.mobn);
+            printf("Phone Number: ");gets(stu.mobn);
             fseek(fp,-sizeof(stu), SEEK_CUR);
             fwrite(&stu,sizeof(stu), 1, fp);
             isFound = 1;
@@ -84,7 +84,7 @@ void delS_det(){
     printf("Delete Record");
     char s_id[15];
     int isFound = 0;
-    printf("Enter PRN to Modify: ");fflush(stdin);
+    printf("Enter PRN to Modify: ");/*fflush(stdin);*/
     gets(s_id);
     FILE *fp, *temp;
     fp = fopen("record.txt","rb");
@@ -107,7 +107,7 @@ void search_det(){
     printf("Search Record\n");
     char s_id[15];
     int isFound = 0;
-    printf("Enter PRN to Search: ");fflush(stdin);
+    printf("Enter PRN to Search: ");/*fflush(stdin);*/
     gets(s_id);
     FILE *fp;
     fp = fopen("record.txt","rb");
@@ -120,15 +120,17 @@ void search_det(){
     }
 
     if(isFound == 1){
-        printf("The record is Found");
-        printf("PRN: ");gets(stu.PRN);
-        printf("Name: ");gets(stu.name);
-        printf("Department: ");gets(stu.dept);
-        printf("Branch: ");gets(stu.branch);
-        printf("Batch: ");gets(stu.batch);
-        printf("Phone Number: ");scanf("%ld",&stu.mobn);
+        textcolor(YELLOW);textbackground(GREEN);
+        printf("The record is Found\n");
+        printf("PRN: %s\n",stu.PRN);
+        printf("Name: %s\n",stu.name);
+        printf("Department: %s\n",stu.dept);
+        printf("Branch: %s\n",stu.branch);
+        printf("Batch: %s\n",stu.batch);
+        printf("Phone Number: %s\n",stu.mobn);
     }else{
-        printf("Sory, No record found in the database");
+        textcolor(RED);textbackground(WHITE);
+        printf("Sory, No record found in the database\n");
     }
     fclose(fp);
     return;
@@ -160,32 +162,28 @@ int main()
     switch(ch)
     {
         case '1':
-            printf("\nYou have selected option 1");
-            delay(800);
+            printf("\nYou have selected option 1\n");
             addS_det();
             main();
         
         case '2':
-            printf("\nYou have selected option 2");
-            delay(800);
+            printf("\nYou have selected option 2\n");
             modS_det();
             main();
 
         case '3':
-            printf("\nYou have selected option 3");
-            delay(800);
+            printf("\nYou have selected option 3\n");
             delS_det();
             main();
 
         case '4':
-            printf("\nYou have selected option 4");
-            delay(800);
+            printf("\nYou have selected option 4\n");
             search_det();
-            delay(2000);
+            delay(4000);
             main();
 
         case '5':
-            printf("\nYou have selected option 5");
+            printf("\nYou have selected option 5\n");
             textcolor(RED);
             delay(800);
             gotoxy(25,25);
@@ -196,4 +194,3 @@ int main()
     }
     return 0;
 }
-
