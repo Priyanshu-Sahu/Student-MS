@@ -11,7 +11,7 @@
   in this project. 
  
  ## Problem
-- This version works well but is **Unable to store each set of records in newline**
+- This version works well but is **Unable to store each set of records in newline of the record.txt file**
   I'll be glad if you'll suggest me some method to solve this Problem.
 
 - Note: Run the .exe file to understand the problem and, To modify the code install Conio2.h and conio.c 
